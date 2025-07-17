@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Search, ShoppingCart, User, Grid3X3 } from 'lucide-react';
+import { Home, Search, ShoppingCart, User, Grid } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 
@@ -19,7 +19,7 @@ const MobileNavigation: React.FC = () => {
       count: 0
     },
     {
-      icon: Grid3X3,
+      icon: Grid,
       label: 'Catégories',
       path: '/categories',
       count: 0

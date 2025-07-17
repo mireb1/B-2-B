@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   BarChart3, 
@@ -11,15 +11,13 @@ import {
   Edit,
   Trash2,
   Plus,
-  DollarSign,
-  Calendar
+  DollarSign
 } from 'lucide-react';
 import { mockProducts } from '../data/mockData';
-import { Product, Order } from '../types';
+import { Product } from '../types';
 
 const AdminDashboard: React.FC = () => {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState('dashboard');
 
   const isActive = (path: string) => location.pathname.includes(path);
 
@@ -171,7 +169,6 @@ const DashboardOverview: React.FC = () => {
 // Products Management
 const ProductsManagement: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(mockProducts);
-  const [showAddForm, setShowAddForm] = useState(false);
 
   const handleDeleteProduct = (id: string) => {
     setProducts(products.filter(p => p.id !== id));
@@ -182,7 +179,7 @@ const ProductsManagement: React.FC = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Gestion des produits</h2>
         <button
-          onClick={() => setShowAddForm(true)}
+          onClick={() => alert('Fonctionnalité d\'ajout en cours de développement')}
           className="btn-primary flex items-center space-x-2"
         >
           <Plus className="w-5 h-5" />
