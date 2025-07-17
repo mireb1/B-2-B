@@ -1,0 +1,28 @@
+name: Slack Notification
+
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Notify Slack on Success
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        text: '🎉 Déploiement réussi pour B2B Marketplace!'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+    
+    - name: Notify Slack on Failure
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      uses: 8398a7/action-slack@v3
+      with:
+        status: failure
+        text: '❌ Échec du déploiement pour B2B Marketplace'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
