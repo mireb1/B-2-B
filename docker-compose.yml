@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Application B2B
+  b2b-app:
+    build: .
+    ports:
+      - "80:80"
+    container_name: b2b-marketplace
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    
+  # Service de surveillance pour les mises à jour automatiques
+  auto-deploy:
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: b2b-auto-deploy
+    restart: unless-stopped
+    depends_on:
+      - b2b-app
+    environment:
+      - CHECK_INTERVAL=300
+    command: ["./auto-deploy.sh", "start"]
