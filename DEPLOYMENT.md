@@ -101,7 +101,7 @@ docker-compose up -d
    ```bash
    # Test rapide
    ./test-slack.sh "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
-   
+
    # Test avec variable d'environnement
    export SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
    ./test-slack.sh
