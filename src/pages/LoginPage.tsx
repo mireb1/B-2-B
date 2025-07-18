@@ -21,7 +21,9 @@ const LoginPage: React.FC = () => {
       await login(email, password);
       navigate('/');
     } catch (error) {
-      setError('Identifiants invalides. Essayez admin@example.com / admin123 ou user@example.com / user123');
+      setError(
+        'Identifiants invalides. Essayez admin@example.com / admin123 ou user@example.com / user123'
+      );
     } finally {
       setLoading(false);
     }
@@ -59,7 +61,10 @@ const LoginPage: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Adresse email
               </label>
               <div className="mt-1 relative">
@@ -72,7 +77,7 @@ const LoginPage: React.FC = () => {
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   placeholder="votre@email.com"
                 />
@@ -80,7 +85,10 @@ const LoginPage: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Mot de passe
               </label>
               <div className="mt-1 relative">
@@ -93,7 +101,7 @@ const LoginPage: React.FC = () => {
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   className="appearance-none block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   placeholder="••••••••"
                 />
@@ -120,7 +128,10 @@ const LoginPage: React.FC = () => {
                 type="checkbox"
                 className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-900"
+              >
                 Se souvenir de moi
               </label>
             </div>
@@ -155,7 +166,9 @@ const LoginPage: React.FC = () => {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-gray-50 text-gray-500">Comptes de démonstration</span>
+                <span className="px-2 bg-gray-50 text-gray-500">
+                  Comptes de démonstration
+                </span>
               </div>
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3">

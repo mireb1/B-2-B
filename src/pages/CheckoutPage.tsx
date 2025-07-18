@@ -8,10 +8,12 @@ const CheckoutPage: React.FC = () => {
   const { items, updateQuantity, removeFromCart, total, clearCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'bank_transfer' | 'credit_card'>('cod');
+  const [paymentMethod, setPaymentMethod] = useState<
+    'cod' | 'bank_transfer' | 'credit_card'
+  >('cod');
   const [loading, setLoading] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
-  
+
   const [shippingInfo, setShippingInfo] = useState({
     name: user?.name || '',
     email: user?.email || '',
@@ -19,7 +21,7 @@ const CheckoutPage: React.FC = () => {
     address: '',
     city: '',
     zipCode: '',
-    country: 'France'
+    country: 'France',
   });
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
@@ -33,14 +35,15 @@ const CheckoutPage: React.FC = () => {
     try {
       // Simulation d'une création de commande
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Vider le panier
       clearCart();
-      
+
       // Rediriger vers une page de confirmation
       navigate('/order-confirmation');
     } catch (error) {
-      console.error('Erreur lors de la commande:', error);
+      // TODO: Gestion d'erreur plus robuste
+      // console.error('Erreur lors de la commande:', error);
     } finally {
       setLoading(false);
     }
@@ -57,13 +60,14 @@ const CheckoutPage: React.FC = () => {
           <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Truck className="w-12 h-12 text-gray-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Votre panier est vide</h2>
-          <p className="text-gray-600">Parcourez nos produits et ajoutez-les à votre panier</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Votre panier est vide
+          </h2>
+          <p className="text-gray-600">
+            Parcourez nos produits et ajoutez-les à votre panier
+          </p>
         </div>
-        <button
-          onClick={() => navigate('/')}
-          className="btn-primary"
-        >
+        <button onClick={() => navigate('/')} className="btn-primary">
           Continuer les achats
         </button>
       </div>
@@ -72,14 +76,18 @@ const CheckoutPage: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Finaliser votre commande</h1>
-      
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        Finaliser votre commande
+      </h1>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Panier */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Votre panier</h2>
-          
-          {items.map((item) => (
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Votre panier
+          </h2>
+
+          {items.map(item => (
             <div key={item.product.id} className="card p-4">
               <div className="flex items-center space-x-4">
                 <img
@@ -88,18 +96,26 @@ const CheckoutPage: React.FC = () => {
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900">{item.product.name}</h3>
-                  <p className="text-sm text-gray-600">{item.product.supplier}</p>
+                  <h3 className="font-semibold text-gray-900">
+                    {item.product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {item.product.supplier}
+                  </p>
                   <div className="flex items-center space-x-2 mt-2">
                     <span className="text-lg font-bold text-primary-600">
                       {item.product.price.toFixed(2)}€
                     </span>
-                    <span className="text-sm text-gray-500">x {item.quantity}</span>
+                    <span className="text-sm text-gray-500">
+                      x {item.quantity}
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
+                    onClick={() =>
+                      handleQuantityChange(item.product.id, item.quantity - 1)
+                    }
                     className="p-1 hover:bg-gray-100 rounded"
                     disabled={item.quantity <= item.product.minOrder}
                   >
@@ -107,7 +123,9 @@ const CheckoutPage: React.FC = () => {
                   </button>
                   <span className="w-8 text-center">{item.quantity}</span>
                   <button
-                    onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
+                    onClick={() =>
+                      handleQuantityChange(item.product.id, item.quantity + 1)
+                    }
                     className="p-1 hover:bg-gray-100 rounded"
                   >
                     <Plus className="w-4 h-4" />
@@ -122,7 +140,7 @@ const CheckoutPage: React.FC = () => {
               </div>
             </div>
           ))}
-          
+
           <div className="card p-4">
             <div className="flex justify-between items-center text-xl font-bold">
               <span>Total:</span>
@@ -145,7 +163,9 @@ const CheckoutPage: React.FC = () => {
                   type="text"
                   placeholder="Nom complet"
                   value={shippingInfo.name}
-                  onChange={(e) => setShippingInfo({...shippingInfo, name: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({ ...shippingInfo, name: e.target.value })
+                  }
                   className="input-field"
                   required
                 />
@@ -153,7 +173,9 @@ const CheckoutPage: React.FC = () => {
                   type="email"
                   placeholder="Email"
                   value={shippingInfo.email}
-                  onChange={(e) => setShippingInfo({...shippingInfo, email: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({ ...shippingInfo, email: e.target.value })
+                  }
                   className="input-field"
                   required
                 />
@@ -161,7 +183,9 @@ const CheckoutPage: React.FC = () => {
                   type="tel"
                   placeholder="Téléphone"
                   value={shippingInfo.phone}
-                  onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({ ...shippingInfo, phone: e.target.value })
+                  }
                   className="input-field"
                   required
                 />
@@ -169,7 +193,12 @@ const CheckoutPage: React.FC = () => {
                   type="text"
                   placeholder="Adresse"
                   value={shippingInfo.address}
-                  onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      address: e.target.value,
+                    })
+                  }
                   className="input-field md:col-span-2"
                   required
                 />
@@ -177,7 +206,9 @@ const CheckoutPage: React.FC = () => {
                   type="text"
                   placeholder="Ville"
                   value={shippingInfo.city}
-                  onChange={(e) => setShippingInfo({...shippingInfo, city: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({ ...shippingInfo, city: e.target.value })
+                  }
                   className="input-field"
                   required
                 />
@@ -185,7 +216,12 @@ const CheckoutPage: React.FC = () => {
                   type="text"
                   placeholder="Code postal"
                   value={shippingInfo.zipCode}
-                  onChange={(e) => setShippingInfo({...shippingInfo, zipCode: e.target.value})}
+                  onChange={e =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      zipCode: e.target.value,
+                    })
+                  }
                   className="input-field"
                   required
                 />
@@ -204,7 +240,7 @@ const CheckoutPage: React.FC = () => {
                     type="radio"
                     value="cod"
                     checked={paymentMethod === 'cod'}
-                    onChange={(e) => setPaymentMethod(e.target.value as 'cod')}
+                    onChange={e => setPaymentMethod(e.target.value as 'cod')}
                     className="w-4 h-4 text-primary-600"
                   />
                   <div className="flex-1">
@@ -219,7 +255,9 @@ const CheckoutPage: React.FC = () => {
                     type="radio"
                     value="bank_transfer"
                     checked={paymentMethod === 'bank_transfer'}
-                    onChange={(e) => setPaymentMethod(e.target.value as 'bank_transfer')}
+                    onChange={e =>
+                      setPaymentMethod(e.target.value as 'bank_transfer')
+                    }
                     className="w-4 h-4 text-primary-600"
                   />
                   <div className="flex-1">
@@ -234,7 +272,9 @@ const CheckoutPage: React.FC = () => {
                     type="radio"
                     value="credit_card"
                     checked={paymentMethod === 'credit_card'}
-                    onChange={(e) => setPaymentMethod(e.target.value as 'credit_card')}
+                    onChange={e =>
+                      setPaymentMethod(e.target.value as 'credit_card')
+                    }
                     className="w-4 h-4 text-primary-600"
                   />
                   <div className="flex-1">
@@ -282,7 +322,9 @@ const CheckoutPage: React.FC = () => {
       {showPaymentForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-lg font-semibold mb-4">Formulaire de paiement</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              Formulaire de paiement
+            </h3>
             <form onSubmit={handleSubmitOrder}>
               <div className="space-y-4">
                 <input

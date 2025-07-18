@@ -16,38 +16,38 @@ const MobileNavigation: React.FC = () => {
       icon: Home,
       label: 'Accueil',
       path: '/',
-      count: 0
+      count: 0,
     },
     {
       icon: Grid,
       label: 'Catégories',
       path: '/categories',
-      count: 0
+      count: 0,
     },
     {
       icon: Search,
       label: 'Rechercher',
       path: '/search',
-      count: 0
+      count: 0,
     },
     {
       icon: ShoppingCart,
       label: 'Panier',
       path: '/checkout',
-      count: itemCount
+      count: itemCount,
     },
     {
       icon: User,
       label: user ? 'Profil' : 'Connexion',
       path: user ? '/profile' : '/login',
-      count: 0
-    }
+      count: 0,
+    },
   ];
 
   return (
     <nav className="mobile-nav">
       <div className="flex items-center justify-around h-16">
-        {navItems.map((item) => {
+        {navItems.map(item => {
           const Icon = item.icon;
           return (
             <Link

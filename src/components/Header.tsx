@@ -12,8 +12,8 @@ const Header: React.FC = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implémentation de la recherche
-    console.log('Recherche:', searchQuery);
+    // TODO: Implémentation de la recherche
+    // console.log('Recherche:', searchQuery);
   };
 
   return (
@@ -25,7 +25,9 @@ const Header: React.FC = () => {
             <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">B</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">B2B Marketplace</span>
+            <span className="text-xl font-bold text-gray-900">
+              B2B Marketplace
+            </span>
           </Link>
 
           {/* Barre de recherche */}
@@ -35,7 +37,7 @@ const Header: React.FC = () => {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 placeholder="Rechercher des produits, fournisseurs..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
@@ -53,7 +55,10 @@ const Header: React.FC = () => {
             </button>
 
             {/* Panier */}
-            <Link to="/checkout" className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
+            <Link
+              to="/checkout"
+              className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg"
+            >
               <ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary-600 text-white text-xs rounded-full flex items-center justify-center">
@@ -69,7 +74,9 @@ const Header: React.FC = () => {
                 className="flex items-center space-x-2 p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg"
               >
                 <User className="w-5 h-5" />
-                {user && <span className="text-sm font-medium">{user.name}</span>}
+                {user && (
+                  <span className="text-sm font-medium">{user.name}</span>
+                )}
               </button>
 
               {showUserMenu && (

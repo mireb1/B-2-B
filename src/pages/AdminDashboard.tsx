@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { 
-  BarChart3, 
-  Package, 
-  ShoppingCart, 
-  Users, 
+import {
+  BarChart3,
+  Package,
+  ShoppingCart,
+  Users,
   CreditCard,
   TrendingUp,
   Eye,
   Edit,
   Trash2,
   Plus,
-  DollarSign
+  DollarSign,
 } from 'lucide-react';
 import { mockProducts } from '../data/mockData';
 import { Product } from '../types';
@@ -23,9 +23,24 @@ const AdminDashboard: React.FC = () => {
 
   const sidebarItems = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3, path: '/admin' },
-    { id: 'products', label: 'Produits', icon: Package, path: '/admin/products' },
-    { id: 'orders', label: 'Commandes', icon: ShoppingCart, path: '/admin/orders' },
-    { id: 'payments', label: 'Paiements', icon: CreditCard, path: '/admin/payments' },
+    {
+      id: 'products',
+      label: 'Produits',
+      icon: Package,
+      path: '/admin/products',
+    },
+    {
+      id: 'orders',
+      label: 'Commandes',
+      icon: ShoppingCart,
+      path: '/admin/orders',
+    },
+    {
+      id: 'payments',
+      label: 'Paiements',
+      icon: CreditCard,
+      path: '/admin/payments',
+    },
     { id: 'users', label: 'Utilisateurs', icon: Users, path: '/admin/users' },
   ];
 
@@ -37,14 +52,16 @@ const AdminDashboard: React.FC = () => {
           <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
         </div>
         <nav className="mt-6">
-          {sidebarItems.map((item) => {
+          {sidebarItems.map(item => {
             const Icon = item.icon;
             return (
               <Link
                 key={item.id}
                 to={item.path}
                 className={`flex items-center space-x-3 px-6 py-3 text-gray-700 hover:bg-gray-50 ${
-                  isActive(item.path) ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : ''
+                  isActive(item.path)
+                    ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600'
+                    : ''
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -77,35 +94,37 @@ const DashboardOverview: React.FC = () => {
       value: '€125,430',
       change: '+12.5%',
       icon: DollarSign,
-      color: 'text-green-600'
+      color: 'text-green-600',
     },
     {
       label: 'Commandes',
       value: '1,234',
       change: '+8.2%',
       icon: ShoppingCart,
-      color: 'text-blue-600'
+      color: 'text-blue-600',
     },
     {
       label: 'Produits',
       value: '567',
       change: '+3.1%',
       icon: Package,
-      color: 'text-purple-600'
+      color: 'text-purple-600',
     },
     {
       label: 'Utilisateurs',
       value: '8,945',
       change: '+15.3%',
       icon: Users,
-      color: 'text-orange-600'
-    }
+      color: 'text-orange-600',
+    },
   ];
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Vue d'ensemble</h2>
-      
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        Vue d&apos;ensemble
+      </h2>
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {stats.map((stat, index) => {
@@ -115,7 +134,9 @@ const DashboardOverview: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">{stat.label}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {stat.value}
+                  </p>
                   <p className={`text-sm ${stat.color}`}>
                     <TrendingUp className="w-4 h-4 inline mr-1" />
                     {stat.change}
@@ -130,7 +151,9 @@ const DashboardOverview: React.FC = () => {
 
       {/* Recent Orders */}
       <div className="card p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Commandes récentes</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          Commandes récentes
+        </h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -152,9 +175,13 @@ const DashboardOverview: React.FC = () => {
                       Livré
                     </span>
                   </td>
-                  <td className="py-2">€{(Math.random() * 1000 + 100).toFixed(2)}</td>
                   <td className="py-2">
-                    {new Date(Date.now() - index * 86400000).toLocaleDateString()}
+                    €{(Math.random() * 1000 + 100).toFixed(2)}
+                  </td>
+                  <td className="py-2">
+                    {new Date(
+                      Date.now() - index * 86400000
+                    ).toLocaleDateString()}
                   </td>
                 </tr>
               ))}
@@ -177,9 +204,13 @@ const ProductsManagement: React.FC = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Gestion des produits</h2>
+        <h2 className="text-2xl font-bold text-gray-900">
+          Gestion des produits
+        </h2>
         <button
-          onClick={() => alert('Fonctionnalité d\'ajout en cours de développement')}
+          onClick={() =>
+            alert("Fonctionnalité d'ajout en cours de développement")
+          }
           className="btn-primary flex items-center space-x-2"
         >
           <Plus className="w-5 h-5" />
@@ -201,7 +232,7 @@ const ProductsManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {products.map(product => (
                 <tr key={product.id} className="border-b hover:bg-gray-50">
                   <td className="p-4">
                     <div className="flex items-center space-x-3">
@@ -212,18 +243,22 @@ const ProductsManagement: React.FC = () => {
                       />
                       <div>
                         <div className="font-medium">{product.name}</div>
-                        <div className="text-sm text-gray-600">{product.supplier}</div>
+                        <div className="text-sm text-gray-600">
+                          {product.supplier}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td className="p-4 capitalize">{product.category}</td>
                   <td className="p-4">€{product.price.toFixed(2)}</td>
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded-full text-xs ${
-                      product.stock > 50 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        product.stock > 50
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
+                    >
                       {product.stock}
                     </span>
                   </td>
@@ -267,7 +302,7 @@ const OrdersManagement: React.FC = () => {
       status: 'pending',
       total: 299.99,
       date: '2024-01-15',
-      paymentMethod: 'cod'
+      paymentMethod: 'cod',
     },
     {
       id: 'ORD-1002',
@@ -275,7 +310,7 @@ const OrdersManagement: React.FC = () => {
       status: 'processing',
       total: 599.99,
       date: '2024-01-14',
-      paymentMethod: 'credit_card'
+      paymentMethod: 'credit_card',
     },
     {
       id: 'ORD-1003',
@@ -283,31 +318,41 @@ const OrdersManagement: React.FC = () => {
       status: 'shipped',
       total: 149.99,
       date: '2024-01-13',
-      paymentMethod: 'bank_transfer'
-    }
+      paymentMethod: 'bank_transfer',
+    },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      case 'processing': return 'bg-blue-100 text-blue-800';
-      case 'shipped': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'processing':
+        return 'bg-blue-100 text-blue-800';
+      case 'shipped':
+        return 'bg-green-100 text-green-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'pending': return 'En attente';
-      case 'processing': return 'En cours';
-      case 'shipped': return 'Expédié';
-      default: return status;
+      case 'pending':
+        return 'En attente';
+      case 'processing':
+        return 'En cours';
+      case 'shipped':
+        return 'Expédié';
+      default:
+        return status;
     }
   };
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Gestion des commandes</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Gestion des commandes
+      </h2>
 
       <div className="card">
         <div className="overflow-x-auto">
@@ -324,23 +369,30 @@ const OrdersManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {mockOrders.map((order) => (
+              {mockOrders.map(order => (
                 <tr key={order.id} className="border-b hover:bg-gray-50">
                   <td className="p-4 font-medium">{order.id}</td>
                   <td className="p-4">{order.customer}</td>
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)}`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)}`}
+                    >
                       {getStatusLabel(order.status)}
                     </span>
                   </td>
                   <td className="p-4">€{order.total.toFixed(2)}</td>
                   <td className="p-4">
                     <span className="capitalize text-sm">
-                      {order.paymentMethod === 'cod' ? 'À la réception' : 
-                       order.paymentMethod === 'credit_card' ? 'Carte' : 'Virement'}
+                      {order.paymentMethod === 'cod'
+                        ? 'À la réception'
+                        : order.paymentMethod === 'credit_card'
+                          ? 'Carte'
+                          : 'Virement'}
                     </span>
                   </td>
-                  <td className="p-4">{new Date(order.date).toLocaleDateString()}</td>
+                  <td className="p-4">
+                    {new Date(order.date).toLocaleDateString()}
+                  </td>
                   <td className="p-4">
                     <div className="flex space-x-2">
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded">
@@ -370,7 +422,7 @@ const PaymentsManagement: React.FC = () => {
       amount: 299.99,
       method: 'cod',
       status: 'pending',
-      date: '2024-01-15'
+      date: '2024-01-15',
     },
     {
       id: 'PAY-1002',
@@ -378,7 +430,7 @@ const PaymentsManagement: React.FC = () => {
       amount: 599.99,
       method: 'credit_card',
       status: 'completed',
-      date: '2024-01-14'
+      date: '2024-01-14',
     },
     {
       id: 'PAY-1003',
@@ -386,22 +438,28 @@ const PaymentsManagement: React.FC = () => {
       amount: 149.99,
       method: 'bank_transfer',
       status: 'completed',
-      date: '2024-01-13'
-    }
+      date: '2024-01-13',
+    },
   ];
 
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'failed': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'completed':
+        return 'bg-green-100 text-green-800';
+      case 'failed':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Gestion des paiements</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Gestion des paiements
+      </h2>
 
       <div className="card">
         <div className="overflow-x-auto">
@@ -418,24 +476,34 @@ const PaymentsManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {mockPayments.map((payment) => (
+              {mockPayments.map(payment => (
                 <tr key={payment.id} className="border-b hover:bg-gray-50">
                   <td className="p-4 font-medium">{payment.id}</td>
                   <td className="p-4">{payment.orderId}</td>
                   <td className="p-4">€{payment.amount.toFixed(2)}</td>
                   <td className="p-4">
                     <span className="capitalize text-sm">
-                      {payment.method === 'cod' ? 'À la réception' : 
-                       payment.method === 'credit_card' ? 'Carte' : 'Virement'}
+                      {payment.method === 'cod'
+                        ? 'À la réception'
+                        : payment.method === 'credit_card'
+                          ? 'Carte'
+                          : 'Virement'}
                     </span>
                   </td>
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded-full text-xs ${getPaymentStatusColor(payment.status)}`}>
-                      {payment.status === 'pending' ? 'En attente' : 
-                       payment.status === 'completed' ? 'Terminé' : 'Échoué'}
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${getPaymentStatusColor(payment.status)}`}
+                    >
+                      {payment.status === 'pending'
+                        ? 'En attente'
+                        : payment.status === 'completed'
+                          ? 'Terminé'
+                          : 'Échoué'}
                     </span>
                   </td>
-                  <td className="p-4">{new Date(payment.date).toLocaleDateString()}</td>
+                  <td className="p-4">
+                    {new Date(payment.date).toLocaleDateString()}
+                  </td>
                   <td className="p-4">
                     <div className="flex space-x-2">
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded">
@@ -461,14 +529,34 @@ const PaymentsManagement: React.FC = () => {
 // Users Management
 const UsersManagement: React.FC = () => {
   const mockUsers = [
-    { id: '1', name: 'Jean Dupont', email: 'jean@example.com', role: 'user', status: 'active' },
-    { id: '2', name: 'Marie Martin', email: 'marie@example.com', role: 'user', status: 'active' },
-    { id: '3', name: 'Admin', email: 'admin@example.com', role: 'admin', status: 'active' }
+    {
+      id: '1',
+      name: 'Jean Dupont',
+      email: 'jean@example.com',
+      role: 'user',
+      status: 'active',
+    },
+    {
+      id: '2',
+      name: 'Marie Martin',
+      email: 'marie@example.com',
+      role: 'user',
+      status: 'active',
+    },
+    {
+      id: '3',
+      name: 'Admin',
+      email: 'admin@example.com',
+      role: 'admin',
+      status: 'active',
+    },
   ];
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Gestion des utilisateurs</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Gestion des utilisateurs
+      </h2>
 
       <div className="card">
         <div className="overflow-x-auto">
@@ -483,14 +571,18 @@ const UsersManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {mockUsers.map((user) => (
+              {mockUsers.map(user => (
                 <tr key={user.id} className="border-b hover:bg-gray-50">
                   <td className="p-4">{user.name}</td>
                   <td className="p-4">{user.email}</td>
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded-full text-xs ${
-                      user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                    }`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        user.role === 'admin'
+                          ? 'bg-purple-100 text-purple-800'
+                          : 'bg-blue-100 text-blue-800'
+                      }`}
+                    >
                       {user.role === 'admin' ? 'Administrateur' : 'Utilisateur'}
                     </span>
                   </td>

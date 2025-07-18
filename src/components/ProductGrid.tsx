@@ -9,7 +9,10 @@ interface ProductGridProps {
   loading?: boolean;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({
+  products,
+  loading = false,
+}) => {
   const { addToCart } = useCart();
 
   if (loading) {
@@ -29,8 +32,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) 
 
   return (
     <div className="grid-products">
-      {products.map((product) => (
-        <div key={product.id} className="card group hover:shadow-lg transition-all duration-300">
+      {products.map(product => (
+        <div
+          key={product.id}
+          className="card group hover:shadow-lg transition-all duration-300"
+        >
           <Link to={`/product/${product.id}`}>
             <div className="relative overflow-hidden rounded-t-lg">
               <img
@@ -52,14 +58,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) 
               )}
             </div>
           </Link>
-          
+
           <div className="p-4">
             <Link to={`/product/${product.id}`}>
               <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-primary-600 transition-colors">
                 {product.name}
               </h3>
             </Link>
-            
+
             <div className="flex items-center mb-2">
               <div className="flex items-center">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -77,7 +83,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) 
                 ({product.reviews})
               </span>
             </div>
-            
+
             <div className="mb-3">
               <div className="text-2xl font-bold text-primary-600">
                 {product.price.toFixed(2)}€
@@ -86,11 +92,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) 
                 Min. commande: {product.minOrder} pcs
               </div>
             </div>
-            
-            <div className="text-sm text-gray-600 mb-3">
-              {product.supplier}
-            </div>
-            
+
+            <div className="text-sm text-gray-600 mb-3">{product.supplier}</div>
+
             <button
               onClick={() => addToCart(product, product.minOrder)}
               className="w-full btn-primary flex items-center justify-center space-x-2"

@@ -1,14 +1,14 @@
-import { Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
-import { CartProvider } from './contexts/CartContext'
-import HomePage from './pages/HomePage'
-import ProductPage from './pages/ProductPage'
-import AdminDashboard from './pages/AdminDashboard'
-import LoginPage from './pages/LoginPage'
-import CheckoutPage from './pages/CheckoutPage'
-import MobileNavigation from './components/MobileNavigation'
-import Header from './components/Header'
-import ProtectedRoute from './components/ProtectedRoute'
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import AdminDashboard from './pages/AdminDashboard';
+import LoginPage from './pages/LoginPage';
+import CheckoutPage from './pages/CheckoutPage';
+import MobileNavigation from './components/MobileNavigation';
+import Header from './components/Header';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -22,13 +22,13 @@ function App() {
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
-              <Route 
-                path="/admin/*" 
+              <Route
+                path="/admin/*"
                 element={
                   <ProtectedRoute requiredRole="admin">
                     <AdminDashboard />
                   </ProtectedRoute>
-                } 
+                }
               />
             </Routes>
           </main>
@@ -36,7 +36,7 @@ function App() {
         </div>
       </CartProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;

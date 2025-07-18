@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Star, ShoppingCart, Heart, Share2, Truck, Shield, ArrowLeft } from 'lucide-react';
+import {
+  Star,
+  ShoppingCart,
+  Heart,
+  Share2,
+  Truck,
+  Shield,
+  ArrowLeft,
+} from 'lucide-react';
 import { Product } from '../types';
 import { mockProducts } from '../data/mockData';
 import { useCart } from '../contexts/CartContext';
@@ -41,7 +49,10 @@ const ProductPage: React.FC = () => {
             <div className="aspect-square bg-gray-200 rounded-lg animate-pulse"></div>
             <div className="flex space-x-2">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="w-20 h-20 bg-gray-200 rounded-lg animate-pulse"></div>
+                <div
+                  key={i}
+                  className="w-20 h-20 bg-gray-200 rounded-lg animate-pulse"
+                ></div>
               ))}
             </div>
           </div>
@@ -58,13 +69,14 @@ const ProductPage: React.FC = () => {
   if (!product) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Produit non trouvé</h2>
-        <p className="text-gray-600 mb-8">Le produit que vous recherchez n'existe pas.</p>
-        <button
-          onClick={() => navigate('/')}
-          className="btn-primary"
-        >
-          Retour à l'accueil
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          Produit non trouvé
+        </h2>
+        <p className="text-gray-600 mb-8">
+          Le produit que vous recherchez n&apos;existe pas.
+        </p>
+        <button onClick={() => navigate('/')} className="btn-primary">
+          Retour à l&apos;accueil
         </button>
       </div>
     );
@@ -119,7 +131,9 @@ const ProductPage: React.FC = () => {
         {/* Informations produit */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              {product.name}
+            </h1>
             <p className="text-gray-600">{product.description}</p>
           </div>
 
@@ -165,7 +179,9 @@ const ProductPage: React.FC = () => {
             </label>
             <div className="flex items-center space-x-3">
               <button
-                onClick={() => setQuantity(Math.max(product.minOrder, quantity - 1))}
+                onClick={() =>
+                  setQuantity(Math.max(product.minOrder, quantity - 1))
+                }
                 className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 -
@@ -173,7 +189,14 @@ const ProductPage: React.FC = () => {
               <input
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(Math.max(product.minOrder, parseInt(e.target.value) || product.minOrder))}
+                onChange={e =>
+                  setQuantity(
+                    Math.max(
+                      product.minOrder,
+                      parseInt(e.target.value) || product.minOrder
+                    )
+                  )
+                }
                 min={product.minOrder}
                 className="w-20 text-center border border-gray-300 rounded-lg py-2"
               />
@@ -223,11 +246,16 @@ const ProductPage: React.FC = () => {
 
       {/* Spécifications */}
       <div className="mt-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Spécifications</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Spécifications
+        </h2>
         <div className="card p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(product.specifications).map(([key, value]) => (
-              <div key={key} className="flex justify-between py-2 border-b border-gray-100">
+              <div
+                key={key}
+                className="flex justify-between py-2 border-b border-gray-100"
+              >
                 <span className="font-medium text-gray-700">{key}:</span>
                 <span className="text-gray-600">{value}</span>
               </div>

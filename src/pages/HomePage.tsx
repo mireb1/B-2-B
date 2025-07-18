@@ -23,23 +23,23 @@ const HomePage: React.FC = () => {
     {
       icon: Shield,
       title: 'Paiement sécurisé',
-      description: 'Transactions protégées et paiement à la réception'
+      description: 'Transactions protégées et paiement à la réception',
     },
     {
       icon: Truck,
       title: 'Livraison rapide',
-      description: 'Expédition mondiale avec suivi en temps réel'
+      description: 'Expédition mondiale avec suivi en temps réel',
     },
     {
       icon: Users,
       title: 'Support 24/7',
-      description: 'Assistance dédiée pour tous vos besoins'
+      description: 'Assistance dédiée pour tous vos besoins',
     },
     {
       icon: TrendingUp,
       title: 'Meilleurs prix',
-      description: 'Tarifs compétitifs et remises en volume'
-    }
+      description: 'Tarifs compétitifs et remises en volume',
+    },
   ];
 
   return (
@@ -83,9 +83,9 @@ const HomePage: React.FC = () => {
               Découvrez notre large gamme de produits
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {categories.map((category) => (
+            {categories.map(category => (
               <Link
                 key={category.id}
                 to={`/category/${category.id}`}
@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
-          
+
           <ProductGrid products={featuredProducts} loading={loading} />
         </div>
       </section>
@@ -146,7 +146,7 @@ const HomePage: React.FC = () => {
               Des services conçus pour votre succès
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -158,9 +158,7 @@ const HomePage: React.FC = () => {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {feature.description}
-                  </p>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
               );
             })}
@@ -175,7 +173,7 @@ const HomePage: React.FC = () => {
             Prêt à développer votre business ?
           </h2>
           <p className="text-xl mb-8 text-primary-100">
-            Rejoignez des milliers d'entreprises qui nous font confiance
+            Rejoignez des milliers d&apos;entreprises qui nous font confiance
           </p>
           <Link
             to="/signup"

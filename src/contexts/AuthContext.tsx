@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import { User, AuthContextType } from '../types';
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -23,7 +29,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Vérifier si l'utilisateur est connecté au démarrage
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
-    
+
     if (token && userData) {
       setUser(JSON.parse(userData));
     }
@@ -40,7 +46,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           email: 'admin@example.com',
           name: 'Administrateur',
           role: 'admin',
-          company: 'B2B Marketplace'
+          company: 'B2B Marketplace',
         };
         setUser(adminUser);
         localStorage.setItem('token', 'admin-token');
@@ -51,7 +57,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           email: 'user@example.com',
           name: 'Utilisateur',
           role: 'user',
-          company: 'Ma Société'
+          company: 'Ma Société',
         };
         setUser(normalUser);
         localStorage.setItem('token', 'user-token');
@@ -59,8 +65,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } else {
         throw new Error('Identifiants invalides');
       }
-    } catch (error) {
-      throw error;
     } finally {
       setIsLoading(false);
     }
