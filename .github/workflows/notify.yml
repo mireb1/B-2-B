@@ -13,16 +13,40 @@ jobs:
     steps:
     - name: Notify Slack on Success
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      uses: 8398a7/action-slack@v3
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        status: success
-        text: '🎉 Déploiement réussi pour B2B Marketplace!'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        payload: |
+          {
+            "text": "🎉 Déploiement réussi pour B2B Marketplace!",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "✅ *Déploiement réussi* pour B2B Marketplace\n🌐 Site: https://mireb1.github.io/B-2-B/\n🚀 Branch: `main`"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
     
     - name: Notify Slack on Failure
       if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-      uses: 8398a7/action-slack@v3
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        status: failure
-        text: '❌ Échec du déploiement pour B2B Marketplace'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        payload: |
+          {
+            "text": "❌ Échec du déploiement pour B2B Marketplace",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "❌ *Échec du déploiement* pour B2B Marketplace\n🔗 Voir les logs: ${{ github.server_url }}/${{ github.repository }}/actions\n🚀 Branch: `main`"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}

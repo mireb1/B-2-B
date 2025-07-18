@@ -72,6 +72,7 @@ docker-compose up -d
 | `npm run preview` | Prévisualiser le build |
 | `./deploy.sh` | Déploiement manuel |
 | `./auto-deploy.sh start` | Surveillance automatique |
+| `./test-slack.sh` | Test des notifications Slack |
 
 ## 🌐 URLs d'Accès
 
@@ -84,6 +85,29 @@ docker-compose up -d
 - Les logs de déploiement sont disponibles dans l'onglet **Actions** de GitHub
 - La surveillance locale enregistre dans `auto-deploy.log`
 - Les notifications peuvent être configurées dans `deploy.sh`
+
+### 📢 Configuration des Notifications Slack
+
+1. **Créer un webhook Slack** :
+   - Allez sur https://api.slack.com/apps
+   - Créez une app et activez 'Incoming Webhooks'
+   - Copiez l'URL webhook
+
+2. **Configurer GitHub** :
+   - Settings > Secrets and variables > Actions
+   - Nouveau secret : `SLACK_WEBHOOK` avec votre URL
+
+3. **Tester les notifications** :
+   ```bash
+   # Test rapide
+   ./test-slack.sh "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+   
+   # Test avec variable d'environnement
+   export SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+   ./test-slack.sh
+   ```
+
+4. **Voir le guide détaillé** : `SLACK_SETUP.md`
 
 ## 🔐 Comptes de Test
 
